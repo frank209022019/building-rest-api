@@ -32,6 +32,28 @@ namespace RealEstateAPI.Controllers
             }
         }
 
+        // GET: api/<CategoiesController>
+        [HttpGet("[action]")]
+        public IActionResult GetSortCategories()
+        {
+            try
+            {
+                var categories = _context.Categories;
+                if (categories.Count() == 0)
+                {
+                    return NotFound("No categories found.");
+                }
+                else
+                {
+                    return Ok(categories.OrderByDescending(x => x.Name));
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         // GET api/<CategoiesController>/5
         [HttpGet("{id}")]
         public IActionResult Get(int id)
