@@ -19,6 +19,7 @@ namespace RealEstateAPI.Models
         public string Password { get; set; }
 
         #region Collections
+
         public ICollection<Property> Properties { get; set; }
 
         #endregion Collections

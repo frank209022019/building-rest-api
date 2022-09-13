@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace RealEstateAPI.Models
 {
@@ -26,8 +27,10 @@ namespace RealEstateAPI.Models
         #region FK
 
         public int CategoryID { get; set; }
+        [JsonIgnore]
         public Category Category { get; set; }
         public int UserID { get; set; }
+        [JsonIgnore]
         public User User { get; set; } = new User();
 
         #endregion FK

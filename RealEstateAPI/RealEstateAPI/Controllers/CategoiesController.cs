@@ -8,7 +8,12 @@ namespace RealEstateAPI.Controllers
     [ApiController]
     public class CategoiesController : ControllerBase
     {
-        private DBContextRealEstate _context = new DBContextRealEstate();
+        private readonly DBContextRealEstate _context;
+
+        public CategoiesController(DBContextRealEstate context)
+        {
+            _context = context;
+        }
 
         // GET: api/<CategoiesController>
         [HttpGet]
@@ -17,14 +22,8 @@ namespace RealEstateAPI.Controllers
             try
             {
                 var categories = _context.Categories;
-                if (categories.Count() == 0)
-                {
-                    return NotFound("No categories found.");
-                }
-                else
-                {
-                    return Ok(categories);
-                }
+                if (categories.Count() == 0) return NotFound("No categories found.");
+                return Ok(categories);
             }
             catch (Exception ex)
             {
@@ -39,14 +38,9 @@ namespace RealEstateAPI.Controllers
             try
             {
                 var categories = _context.Categories;
-                if (categories.Count() == 0)
-                {
-                    return NotFound("No categories found.");
-                }
-                else
-                {
-                    return Ok(categories.OrderByDescending(x => x.Name));
-                }
+                if (categories.Count() == 0) return NotFound("No categories found.");
+
+                return Ok(categories.OrderByDescending(x => x.Name));
             }
             catch (Exception ex)
             {
@@ -61,14 +55,8 @@ namespace RealEstateAPI.Controllers
             try
             {
                 var category = _context.Categories.FirstOrDefault(i => i.CategoryID == id);
-                if (category == null)
-                {
-                    return NotFound("Category not found.");
-                }
-                else
-                {
-                    return Ok(category);
-                }
+                if (category == null) return NotFound("Category not found.");
+                return Ok(category);
             }
             catch (Exception ex)
             {
@@ -85,7 +73,7 @@ namespace RealEstateAPI.Controllers
                 if (_context.Categories.Any(i => i.Name.ToLower().Trim() == value.Name.ToLower().Trim()))
                 {
                     //  Category Found with Name
-                    return StatusCode(StatusCodes.Status401Unauthorized, "A category with the same name already exists.");
+                    return StatusCode(StatusCodes.Status404NotFound, "A category with the same name already exists.");
                 }
                 else
                 {

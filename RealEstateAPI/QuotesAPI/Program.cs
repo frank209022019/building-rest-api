@@ -30,7 +30,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 //  Database Connection
-builder.Services.AddDbContext<DBContextRealEstate>(o => o.UseSqlServer(@"Server=FRANKG-PC\SQLEXPRESS;Database=Quote;Trusted_Connection=True;"));
+builder.Services.AddDbContext<DBContextQuote>(o => o.UseSqlServer(@"Server=FRANKG-PC\SQLEXPRESS;Database=Quote;Trusted_Connection=True;"));
 
 var app = builder.Build();
 

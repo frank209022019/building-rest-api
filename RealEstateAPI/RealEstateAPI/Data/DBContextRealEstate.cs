@@ -9,10 +9,8 @@ namespace RealEstateAPI.Data
         public DbSet<User> Users { get; set; }
         public DbSet<Property> Properties { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(@"Server=FRANKG-PC\SQLEXPRESS;Database=RealEstate;Trusted_Connection=True;");
-        }
-
+        public DBContextRealEstate(DbContextOptions<DBContextRealEstate> options)
+          : base(options)
+        { }
     }
 }

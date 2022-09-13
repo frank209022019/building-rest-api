@@ -15,6 +15,7 @@ namespace RealEstateAPI.Models
         public string Description { get; set; }
 
         #region Collections
+
         public ICollection<Property> Properties { get; set; }
 
         #endregion Collections
