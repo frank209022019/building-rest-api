@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using RealEstateAPI.Models;
+using RealEstateAPI_Auth0.Models;
 
-namespace RealEstateAPI.Data
+namespace RealEstateAPI_Auth0.Data
 {
     public class DBContextRealEstate : DbContext
     {

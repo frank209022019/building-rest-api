@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using RealEstateAPI.Data;
+using RealEstateAPI_Auth0.Data;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);

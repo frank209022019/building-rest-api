@@ -3,17 +3,19 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using RealEstateAPI.Data;
+using RealEstateAPI_Auth0.Data;
 
 #nullable disable
 
-namespace RealEstateAPI.Migrations
+namespace RealEstateAPI_Auth0.Migrations
 {
     [DbContext(typeof(DBContextRealEstate))]
-    partial class DBContextRealEstateModelSnapshot : ModelSnapshot
+    [Migration("20220915070940_addedQuoteQuoteTypes")]
+    partial class addedQuoteQuoteTypes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,7 +24,7 @@ namespace RealEstateAPI.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("RealEstateAPI.Models.Category", b =>
+            modelBuilder.Entity("RealEstateAPI_Auth0.Models.Category", b =>
                 {
                     b.Property<int>("CategoryID")
                         .ValueGeneratedOnAdd()
@@ -46,7 +48,7 @@ namespace RealEstateAPI.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("RealEstateAPI.Models.Property", b =>
+            modelBuilder.Entity("RealEstateAPI_Auth0.Models.Property", b =>
                 {
                     b.Property<int>("PropertyID")
                         .ValueGeneratedOnAdd()
@@ -91,7 +93,7 @@ namespace RealEstateAPI.Migrations
                     b.ToTable("Properties");
                 });
 
-            modelBuilder.Entity("RealEstateAPI.Models.Quote", b =>
+            modelBuilder.Entity("RealEstateAPI_Auth0.Models.Quote", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -121,7 +123,7 @@ namespace RealEstateAPI.Migrations
                     b.ToTable("Quotes");
                 });
 
-            modelBuilder.Entity("RealEstateAPI.Models.QuoteType", b =>
+            modelBuilder.Entity("RealEstateAPI_Auth0.Models.QuoteType", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -137,7 +139,7 @@ namespace RealEstateAPI.Migrations
                     b.ToTable("QuoteTypes");
                 });
 
-            modelBuilder.Entity("RealEstateAPI.Models.User", b =>
+            modelBuilder.Entity("RealEstateAPI_Auth0.Models.User", b =>
                 {
                     b.Property<int>("UserID")
                         .ValueGeneratedOnAdd()
@@ -166,15 +168,15 @@ namespace RealEstateAPI.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("RealEstateAPI.Models.Property", b =>
+            modelBuilder.Entity("RealEstateAPI_Auth0.Models.Property", b =>
                 {
-                    b.HasOne("RealEstateAPI.Models.Category", "Category")
+                    b.HasOne("RealEstateAPI_Auth0.Models.Category", "Category")
                         .WithMany("Properties")
                         .HasForeignKey("CategoryID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("RealEstateAPI.Models.User", "User")
+                    b.HasOne("RealEstateAPI_Auth0.Models.User", "User")
                         .WithMany("Properties")
                         .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -185,9 +187,9 @@ namespace RealEstateAPI.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("RealEstateAPI.Models.Quote", b =>
+            modelBuilder.Entity("RealEstateAPI_Auth0.Models.Quote", b =>
                 {
-                    b.HasOne("RealEstateAPI.Models.QuoteType", "QuoteType")
+                    b.HasOne("RealEstateAPI_Auth0.Models.QuoteType", "QuoteType")
                         .WithMany("Quotes")
                         .HasForeignKey("QuoteTypeID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -196,17 +198,17 @@ namespace RealEstateAPI.Migrations
                     b.Navigation("QuoteType");
                 });
 
-            modelBuilder.Entity("RealEstateAPI.Models.Category", b =>
+            modelBuilder.Entity("RealEstateAPI_Auth0.Models.Category", b =>
                 {
                     b.Navigation("Properties");
                 });
 
-            modelBuilder.Entity("RealEstateAPI.Models.QuoteType", b =>
+            modelBuilder.Entity("RealEstateAPI_Auth0.Models.QuoteType", b =>
                 {
                     b.Navigation("Quotes");
                 });
 
-            modelBuilder.Entity("RealEstateAPI.Models.User", b =>
+            modelBuilder.Entity("RealEstateAPI_Auth0.Models.User", b =>
                 {
                     b.Navigation("Properties");
                 });
