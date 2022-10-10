@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using RealEstateAPI_Auth0.Data;
 using RealEstateAPI_Auth0.Models;
 
@@ -6,6 +7,7 @@ namespace RealEstateAPI_Auth0.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class QuotesController : ControllerBase
     {
         private readonly DBContextRealEstate _context;
